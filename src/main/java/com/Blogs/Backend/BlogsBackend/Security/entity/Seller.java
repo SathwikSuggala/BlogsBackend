@@ -20,7 +20,6 @@ public class Seller {
     @Id
     private String id;
     private String userName;
-    private Set<String> productId = new HashSet<>();
-    private List<String> orders = new ArrayList<>();
+    private List<String> BlogId;
 
 }
