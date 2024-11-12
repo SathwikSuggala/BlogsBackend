@@ -33,16 +33,16 @@ public class UserService {
         User user = new User();
         user.setUser(userDto);
         // Check if username already exists
-        if (userRepository.findByUsername(user.getUserName()).isPresent() || sellerRequestRepository.findByUserName(user.getUserName()).isPresent()|| rejectedSellerRequestRepository.findByUserName(user.getUserName()).isPresent() ) {
+        if (userRepository.findByUsername(user.getUserName()).isPresent() || sellerRequestRepository.findByUserName(user.getUserName()).isPresent()|| rejectedSellerRequestRepository.findByUserName(user.getUserName()).isPresent()) {
             return new RegisterResponseDto(user.getUserName(), user.getRole(),false);
         }
         // Encrypt the password
         String encryptedPassword = encoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
         user.setRole(Role.SELLER);
-        // Save the user to the repository
-        userRepository.save(user);
-
+        SellerRequest sellerRequest = new SellerRequest();
+        sellerRequest.setUser(user);
+        sellerRequestRepository.save(sellerRequest);
         return new RegisterResponseDto(user.getUserName(), user.getRole(),true);
     }
 

@@ -2,6 +2,7 @@ package com.Blogs.Backend.BlogsBackend.Security.controller;
 
 
 import com.Blogs.Backend.BlogsBackend.Security.dto.*;
+import com.Blogs.Backend.BlogsBackend.Security.entity.SellerRequest;
 import com.Blogs.Backend.BlogsBackend.Security.jwt.service.JwtService;
 import com.Blogs.Backend.BlogsBackend.Security.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
