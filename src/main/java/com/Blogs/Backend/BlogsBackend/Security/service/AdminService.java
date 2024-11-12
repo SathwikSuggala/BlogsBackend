@@ -22,8 +22,6 @@ public class AdminService {
     private SellerRepository sellerRepository;
     @Autowired
     private RejectedSellerRequestRepository rejectedSellerRequestRepository;
-    @Autowired
-    private OrdersRepository ordersRepository;
 
     // Retrieves all pending seller requests, throws NoContentException if none are found
     public List<SellerRequest> getAllRequests() {
@@ -96,10 +94,6 @@ public class AdminService {
             throw new NoContentException("No request found"); // Throws exception if the rejected request is not found
         }
         return result; // Returns the specific rejected request
-    }
-
-    public List<Orders> getAllOrders() {
-        return ordersRepository.findAll();
     }
 
     public List<User> getAllUsersAccount() {

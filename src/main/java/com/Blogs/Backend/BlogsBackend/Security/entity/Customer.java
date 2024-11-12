@@ -1,7 +1,6 @@
 package com.Blogs.Backend.BlogsBackend.Security.entity;
 
 
-import com.Blogs.Backend.BlogsBackend.Security.classes.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,6 @@ public class Customer {
     @Id
     private String id;
     private String userName;
-    List<Address> addresses = new ArrayList<>();
+    
 }
 

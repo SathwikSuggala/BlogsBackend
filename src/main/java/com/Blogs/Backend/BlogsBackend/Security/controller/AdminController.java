@@ -65,11 +65,6 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/getAllOrders")
-    public ResponseEntity<?> getAllOrders(){
-        return new ResponseEntity<>(adminService.getAllOrders(),HttpStatus.OK);
-    }
-
     @GetMapping("/getAllUsers")
     public ResponseEntity<?> getAllUsers(){
         return new ResponseEntity<>(adminService.getAllUsersAccount(),HttpStatus.OK);

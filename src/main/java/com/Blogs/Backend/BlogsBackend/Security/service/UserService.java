@@ -1,10 +1,8 @@
 package com.Blogs.Backend.BlogsBackend.Security.service;
 
-import com.Blogs.Backend.BlogsBackend.Security.SMS.service.SmsService;
 import com.Blogs.Backend.BlogsBackend.Security.dto.RegisterResponseDto;
 import com.Blogs.Backend.BlogsBackend.Security.enums.Role;
 import com.Blogs.Backend.BlogsBackend.Security.dto.UserDto;
-import com.Blogs.Backend.BlogsBackend.Security.email.service.EmailSenderService;
 import com.Blogs.Backend.BlogsBackend.Security.entity.*;
 import com.Blogs.Backend.BlogsBackend.Security.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +15,14 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private EmailSenderService emailSenderService;
-    @Autowired
-    private SmsService smsService;
+
     @Autowired
     private SellerRepository sellerRepository;
-    @Autowired
-    private CustomerRepository customerRepository;
-    @Autowired
-    private CartRepository cartRepository;
+
+
     @Autowired
     private SellerRequestRepository sellerRequestRepository;
-    @Autowired
-    private ProductRepository productRepository;
+
     @Autowired
     private RejectedSellerRequestRepository rejectedSellerRequestRepository;
 
@@ -80,19 +72,6 @@ public class UserService {
     }
 
     public void deleteAccount(String userName, String role) {
-
-        if(role.equals(Role.CUSTOMER.toString())){
-            cartRepository.deleteByUserName(userName);
-            customerRepository.deleteByUserName(userName);
-        }
-
-        if(role.equals(Role.SELLER.toString())){
-
-            Seller seller = sellerRepository.findByUserName(userName);
-            productRepository.deleteAllById(seller.getProductId());
-            sellerRepository.delete(seller);
-        }
-
         userRepository.deleteByUserName(userName);
     }
 
@@ -108,14 +87,6 @@ public class UserService {
         String encryptedPassword = encoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
         userRepository.save(user);
-
-            Customer customer = new Customer();
-            customer.setUserName(userName);
-            customerRepository.save(customer);
-
-        Cart cart = new Cart();
-        cart.setUserName(userName);
-        cartRepository.save(cart);
 
     }
 
