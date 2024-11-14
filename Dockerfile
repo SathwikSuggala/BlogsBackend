@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:21-jdk-slim
-COPY --from=build /target/BlogsBackend-0.0.1-SNAPSHOT BlogsBackend.jar
+COPY --from=build /target/BlogsBackend-0.0.1-SNAPSHOT.jar BlogsBackend.jar
 
 # # Set the working directory in the container
 # WORKDIR /app
