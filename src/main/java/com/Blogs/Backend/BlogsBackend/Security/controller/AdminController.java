@@ -4,6 +4,7 @@ package com.Blogs.Backend.BlogsBackend.Security.controller;
 import com.Blogs.Backend.BlogsBackend.Security.dto.RequestStringDto;
 import com.Blogs.Backend.BlogsBackend.Security.exceptions.NoContentException;
 import com.Blogs.Backend.BlogsBackend.Security.service.AdminService;
+import com.Blogs.Backend.BlogsBackend.Security.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private BlogService blogService;
 
     @PostMapping("/getAllRequests")
     public ResponseEntity<?> getAllRequests(){
@@ -68,5 +71,10 @@ public class AdminController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<?> getAllUsers(){
         return new ResponseEntity<>(adminService.getAllUsersAccount(),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteBlog/{blogId)")
+    public void deleteBlog(@PathVariable String blogId){
+        blogService.deleteBlog(blogId);
     }
 }
