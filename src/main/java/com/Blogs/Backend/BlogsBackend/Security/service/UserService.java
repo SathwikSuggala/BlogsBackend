@@ -19,6 +19,9 @@ public class UserService {
     @Autowired
     private SellerRepository sellerRepository;
 
+    @Autowired
+    private BlogRepository blogRepository;
+
 
     @Autowired
     private SellerRequestRepository sellerRequestRepository;

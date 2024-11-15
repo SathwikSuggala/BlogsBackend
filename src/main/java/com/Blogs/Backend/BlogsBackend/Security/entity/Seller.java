@@ -20,6 +20,6 @@ public class Seller {
     @Id
     private String id;
     private String userName;
-    private List<String> BlogId;
+    private List<String> BlogId = new ArrayList<>();
 
 }

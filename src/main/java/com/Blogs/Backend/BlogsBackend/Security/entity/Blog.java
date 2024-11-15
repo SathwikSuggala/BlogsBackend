@@ -1,9 +1,11 @@
 package com.Blogs.Backend.BlogsBackend.Security.entity;
 
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -18,4 +20,13 @@ public class Blog {
     private String description;
     private String createdBy;
     private String imageUrl;
+
+    @JsonIgnore
+    public  void setBlog(BlogRequest request){
+
+        this.title = request.getTitle();
+        this.description = request.getDescription();
+        this.createdBy = request.getCreatedBy();
+        this.imageUrl = request.getImageUrl();
+    }
 }

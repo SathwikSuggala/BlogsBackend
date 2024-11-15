@@ -2,8 +2,10 @@ package com.Blogs.Backend.BlogsBackend.Security.controller;
 
 
 import com.Blogs.Backend.BlogsBackend.Security.dto.*;
+import com.Blogs.Backend.BlogsBackend.Security.entity.Blog;
 import com.Blogs.Backend.BlogsBackend.Security.entity.SellerRequest;
 import com.Blogs.Backend.BlogsBackend.Security.jwt.service.JwtService;
+import com.Blogs.Backend.BlogsBackend.Security.service.BlogService;
 import com.Blogs.Backend.BlogsBackend.Security.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -27,7 +30,11 @@ public class UserController {
     private JwtService jwtService;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private BlogService blogService;
 
+
+    //registration for customer
     @PostMapping("/register")
     public String resisterDummy(@RequestBody UserDto user){
 
@@ -35,6 +42,7 @@ public class UserController {
         return "Success";
     }
 
+    //login api
     @PostMapping("/authenticate")
     public ResponseEntity<?> generateToken(@RequestBody AuthRequestDto authRequestDto, HttpServletResponse response){
 
@@ -50,6 +58,7 @@ public class UserController {
         }
     }
 
+    //seller registration
     @PostMapping("/sellers/register")
     public ResponseEntity<?> sellerRegistration(@RequestBody UserDto user){
 
@@ -66,6 +75,7 @@ public class UserController {
         }
     }
 
+    //to get account details
     @PostMapping("/getMyAccount")
     public ResponseEntity<?> getMyAccount(Principal principal){
         try{
@@ -75,6 +85,7 @@ public class UserController {
         }
     }
 
+    //to update the account
     @PutMapping("/updateAccount")
     public ResponseEntity<?> updateAccount(@RequestBody UserDto userDto, Principal principal){
         try {
@@ -85,6 +96,7 @@ public class UserController {
         }
     }
 
+    //to delete his account
     @DeleteMapping("/deleteAccount")
     public ResponseEntity<String> deleteAccount(HttpServletRequest request){
         String token = null;
@@ -99,5 +111,10 @@ public class UserController {
         }
         userService.deleteAccount(userName, role);
         return new ResponseEntity<>(userName,HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllBlogs")
+    public List<Blog> getAllBlogs(){
+        return blogService.getAllBlogs();
     }
 }
