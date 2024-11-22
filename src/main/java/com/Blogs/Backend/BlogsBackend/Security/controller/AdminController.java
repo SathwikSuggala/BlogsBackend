@@ -73,7 +73,7 @@ public class AdminController {
         return new ResponseEntity<>(adminService.getAllUsersAccount(),HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteBlog/{blogId)")
+    @DeleteMapping("/deleteBlog/{blogId}")
     public void deleteBlog(@PathVariable String blogId){
         blogService.deleteBlog(blogId);
     }
