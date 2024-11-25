@@ -30,4 +30,8 @@ public class BlogService {
         sellerRepository.save(seller);
         blogRepository.deleteById(blogId);
     }
+
+    public Blog getBlog(String blogId) {
+        return blogRepository.findById(blogId).orElse(null);
+    }
 }

@@ -132,4 +132,8 @@ public class UserService {
         userDto.setUserDto(user);
         return userDto;
     }
+
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
 }

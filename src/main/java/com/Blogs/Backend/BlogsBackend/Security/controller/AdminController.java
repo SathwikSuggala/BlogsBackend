@@ -77,4 +77,9 @@ public class AdminController {
     public void deleteBlog(@PathVariable String blogId){
         blogService.deleteBlog(blogId);
     }
+
+    @DeleteMapping("/deleteUser/{userId}")
+    public void deleteUser(@PathVariable String userId){
+        adminService.deleteUser(userId);
+    }
 }

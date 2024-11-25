@@ -117,4 +117,9 @@ public class UserController {
     public List<Blog> getAllBlogs(){
         return blogService.getAllBlogs();
     }
+
+    @GetMapping("/getBlog/{blogId}")
+    public Blog getBlog(@PathVariable String blogId){
+        return blogService.getBlog(blogId);
+    }
 }

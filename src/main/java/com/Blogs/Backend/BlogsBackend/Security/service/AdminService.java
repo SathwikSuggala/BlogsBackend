@@ -22,6 +22,8 @@ public class AdminService {
     private SellerRepository sellerRepository;
     @Autowired
     private RejectedSellerRequestRepository rejectedSellerRequestRepository;
+    @Autowired
+    private UserService userService;
 
     // Retrieves all pending seller requests, throws NoContentException if none are found
     public List<SellerRequest> getAllRequests() {
@@ -98,5 +100,9 @@ public class AdminService {
 
     public List<User> getAllUsersAccount() {
         return userRepository.findAll();
+    }
+
+    public void deleteUser(String userId) {
+        userService.deleteUser(userId);
     }
 }
