@@ -20,4 +20,6 @@ public interface SellerRepository extends MongoRepository<Seller,String> {
 
     List<Seller> findAllByUserNameIn(List<String> sellerUserNames);
 
+    void deleteByUserName(String userName);
+
 }

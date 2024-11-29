@@ -21,18 +21,24 @@ public class SellerService {
     @Autowired
     BlogRequestRepository blogRequestRepository;
 
-    public void addMyBlog(BlogRequest blogRequest, String name) {
+//    public void addMyBlog(BlogRequest blogRequest, String name) {
+//
+//        Blog blog = new Blog();
+//        blog.setBlog(blogRequest);
+//        Seller seller = sellerRepository.findByUserName(name);
+//        blog.setCreatedBy(name);
+//        blogRepository.save(blog);
+//        blog = blogRepository.findByTitleAndCreatedBy(blog.getTitle(), name).orElse(null);
+//        seller.getBlogId().add(blog.getId());
+//        sellerRepository.save(seller);
+//
+//    }
 
-        Blog blog = new Blog();
-        blog.setBlog(blogRequest);
-        Seller seller = sellerRepository.findByUserName(name);
-        blog.setCreatedBy(name);
-        blogRepository.save(blog);
-        blog = blogRepository.findByTitleAndCreatedBy(blog.getTitle(), name).orElse(null);
-        seller.getBlogId().add(blog.getId());
-        sellerRepository.save(seller);
+        public void addMyBlog(BlogRequest blogRequest, String name) {
 
+        blogRequestRepository.save(blogRequest);
     }
+
 
     public List<Blog> gtMyBlogs(String name) {
 

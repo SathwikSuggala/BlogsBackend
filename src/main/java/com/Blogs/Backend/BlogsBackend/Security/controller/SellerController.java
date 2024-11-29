@@ -27,6 +27,11 @@ public class SellerController {
     @Autowired
     private SellerRepository sellerRepo;
 
+//    @PostMapping("/addBlog")
+//    public void addMyBlog(@RequestBody BlogRequest blog, Principal principal) {
+//        sellerService.addMyBlog(blog, principal.getName());
+//    }
+
     @PostMapping("/addBlog")
     public void addMyBlog(@RequestBody BlogRequest blog, Principal principal) {
         sellerService.addMyBlog(blog, principal.getName());

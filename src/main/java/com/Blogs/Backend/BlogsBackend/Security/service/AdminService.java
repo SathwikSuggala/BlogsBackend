@@ -102,7 +102,7 @@ public class AdminService {
         return userRepository.findAll();
     }
 
-    public void deleteUser(String userId) {
-        userService.deleteUser(userId);
+    public void deleteUser(String userName) {
+        userService.deleteUser(userName);
     }
 }

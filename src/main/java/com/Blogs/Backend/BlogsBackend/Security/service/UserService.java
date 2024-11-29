@@ -22,12 +22,14 @@ public class UserService {
     @Autowired
     private BlogRepository blogRepository;
 
-
     @Autowired
     private SellerRequestRepository sellerRequestRepository;
 
     @Autowired
     private RejectedSellerRequestRepository rejectedSellerRequestRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
@@ -133,7 +135,9 @@ public class UserService {
         return userDto;
     }
 
-    public void deleteUser(String userId) {
-        userRepository.deleteById(userId);
+    public void deleteUser(String userName) {
+        userRepository.deleteByUserName(userName);
+        sellerRepository.deleteByUserName(userName);
+        customerRepository.deleteByUserName(userName);
     }
 }
