@@ -94,13 +94,13 @@ public class AdminController {
         return blogRequestService.getAllBlogRequests();
     }
 
-    @PostMapping("/approveBlog")
-    public void approveBlog(@RequestBody RequestStringDto data){
-        blogRequestService.approveBlog(data.getData());
+    @GetMapping("/approveBlog/{data}")
+    public void approveBlog(@PathVariable String data){
+        blogRequestService.approveBlog(data);
     }
 
-    @PostMapping("/rejectBlog")
-    public void rejectBlog(@RequestBody RequestStringDto data){
-        blogRequestService.rejectBlog(data.getData());
+    @GetMapping("/rejectBlog/{data}")
+    public void rejectBlog(@PathVariable String data){
+        blogRequestService.rejectBlog(data);
     }
 }
