@@ -36,20 +36,20 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/approveRequest")
-    public ResponseEntity<?> approveRequest(@RequestBody RequestStringDto requestStringDto){
-        System.out.println(requestStringDto.getData());
+    @GetMapping("/approveRequest/{userName}")
+    public ResponseEntity<?> approveRequest(@RequestBody String userName){
+
         try {
-            return new ResponseEntity<>(adminService.approveRequest(requestStringDto), HttpStatus.OK);
+            return new ResponseEntity<>(adminService.approveRequest(userName), HttpStatus.OK);
         }catch (IllegalArgumentException ie){
             return new ResponseEntity<>(ie.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PostMapping("/rejectRequest")
-    public ResponseEntity<?> rejectRequest(@RequestBody RequestStringDto requestStringDto){
+    @GetMapping("/rejectRequest/{userName}")
+    public ResponseEntity<?> rejectRequest(@RequestBody String userName){
         try {
-            return new ResponseEntity<>(adminService.rejectRequest(requestStringDto), HttpStatus.OK);
+            return new ResponseEntity<>(adminService.rejectRequest(userName), HttpStatus.OK);
         }catch (IllegalArgumentException ie){
             return new ResponseEntity<>(ie.getMessage(), HttpStatus.BAD_REQUEST);
         }

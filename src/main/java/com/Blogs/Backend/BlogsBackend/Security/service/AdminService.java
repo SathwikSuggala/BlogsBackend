@@ -35,10 +35,10 @@ public class AdminService {
     }
 
     // Approves a seller request based on the username provided in requestStringDto
-    public boolean approveRequest(RequestStringDto requestStringDto) {
+    public boolean approveRequest(String userName) {
         // Finds the seller request by username
-        SellerRequest sellerRequest = sellerRequestRepository.findByUserName(requestStringDto.getData()).orElse(null);
-        System.out.println(requestStringDto.getData()); // Logs the username for debugging
+        SellerRequest sellerRequest = sellerRequestRepository.findByUserName(userName).orElse(null);
+        System.out.println(userName); // Logs the username for debugging
         if(sellerRequest == null){
             throw new IllegalArgumentException("seller request not found"); // Throws exception if request does not exist
         }
@@ -60,9 +60,9 @@ public class AdminService {
     }
 
     // Rejects a seller request based on the username provided in requestStringDto
-    public boolean rejectRequest(RequestStringDto requestStringDto) {
+    public boolean rejectRequest(String userName) {
         // Finds the seller request by username
-        SellerRequest sellerRequest = sellerRequestRepository.findByUserName(requestStringDto.getData()).orElse(null);
+        SellerRequest sellerRequest = sellerRequestRepository.findByUserName(userName).orElse(null);
         if(sellerRequest == null){
             throw new IllegalArgumentException("seller request not found"); // Throws exception if request does not exist
         }
@@ -75,7 +75,7 @@ public class AdminService {
         rejectedSellerRequestRepository.save(rejectSellerRequest);
 
         // Deletes the request from seller request repository by username
-        sellerRequestRepository.deleteByUserName(requestStringDto.getData());
+        sellerRequestRepository.deleteByUserName(userName);
 
         return true; // Indicates rejection was successful
     }
