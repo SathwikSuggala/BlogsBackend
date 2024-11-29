@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @GetMapping("/approveRequest/{userName}")
-    public ResponseEntity<?> approveRequest(@RequestBody String userName){
+    public ResponseEntity<?> approveRequest(@PathVariable String userName){
 
         try {
             return new ResponseEntity<>(adminService.approveRequest(userName), HttpStatus.OK);
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @GetMapping("/rejectRequest/{userName}")
-    public ResponseEntity<?> rejectRequest(@RequestBody String userName){
+    public ResponseEntity<?> rejectRequest(@PathVariable String userName){
         try {
             return new ResponseEntity<>(adminService.rejectRequest(userName), HttpStatus.OK);
         }catch (IllegalArgumentException ie){
